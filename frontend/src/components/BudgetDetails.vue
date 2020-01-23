@@ -1,10 +1,15 @@
 <template>
     <div class="budgetDetails">
-        <h2>{{name}}</h2>
-        <p>{{startDateFormatted}}-{{endDateFormatted}}</p>
-
+        <h2 class="header">{{name}}</h2>
+        <p class="dateSubheader">{{startDateFormatted}}-{{endDateFormatted}}</p>
+                
         <div class="progressBar">
-            <p>${{amountSpent}}/${{amount}}</p>
+            <div class="amountFraction">
+                ${{amountSpent}}/${{amount}}
+            </div>
+            <div class="progressBarInside" :style="{ width: amountSpentPercentage }">
+
+            </div>
         </div>
 
         <CreateModal 
@@ -68,7 +73,7 @@ import DeleteModal from './DeleteModal.vue';
     },
     data() {
       return {
-          amountSpent: Number
+          amountSpent: null
       }
     },
     computed: {
@@ -80,6 +85,9 @@ import DeleteModal from './DeleteModal.vue';
         },
         endDateFormatted() {
             return this.endDate.toLocaleDateString("en-US");
+        },
+        amountSpentPercentage() {
+            return (this.amountSpent/this.amount)*100 + "%";
         }
     },
     mounted () {
@@ -112,7 +120,26 @@ import DeleteModal from './DeleteModal.vue';
 .budgetDetails {
     border: 1px solid black;
 }
+.header {
+    margin-top: 1em;
+}
 .progressBar {
-    border: 1px solid black;
+    border: 1px solid green;
+    position: relative;
+    height: 1.5em;
+    width: 90%;
+    margin: 0 auto;
+}
+.progressBarInside {
+    position: relative;
+    background: rgb(121, 203, 121, 0.2);
+    height: 1em;
+    top: -90%;
+    padding-top: 0.5em;
+}
+.amountFraction {
+    margin-top: 0;
+    margin-bottom: 0;
+    left: 50%;
 }
 </style>
