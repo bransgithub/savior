@@ -1,17 +1,32 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-require('./models/User');
-require('./models/Transaction');
-require('./models/Budget');
-
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+//Route Setup
+const BudgetRoutes = require('./routes/budget.route');
+const TransactionRoutes = require('./routes/transaction.route');
+
+app.use('/budget', BudgetRoutes);
+app.use('/transaction', TransactionRoutes);
+
+//MongoDB Setup
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URI);
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB could not connect:'));
+
 let port = 8085;
-
-
-
-
-
 app.listen(port, () => {
     console.log("Server running on port: " + port);
 })
