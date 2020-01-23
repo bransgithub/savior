@@ -1,5 +1,9 @@
 <template>
     <div class="budgetDetails">
+        <div class="budgetButtons">
+            <button class="editBudgetButton" @click="openEditBudgetModal()">Edit</button>
+            <button class="deleteBudgetButton" @click="openDeleteBudgetModal()">X</button>
+        </div>
         <h2 class="header">{{name}}</h2>
         <p class="dateSubheader">{{startDateFormatted}}-{{endDateFormatted}}</p>
                 
@@ -9,6 +13,15 @@
             </div>
             <div class="progressBarInside" :style="{ width: amountSpentPercentage }">
 
+            </div>
+        </div>
+
+        <div class="transactionsHeaderSection">
+            <div class="transactionHeader">
+                Transactions 
+            </div>
+            <div class="addTransactionButtonDiv">
+                <button class="addTransactionButton" @click="openCreateTransactionModal()">+</button>
             </div>
         </div>
 
@@ -33,10 +46,6 @@
             :id="id"
             :isBudget=true
         />
-
-        <button @click="openCreateTransactionModal()">Add Transaction</button>
-        <button @click="openEditBudgetModal()">Edit Budget Item</button>
-        <button @click="openDeleteBudgetModal()">Delete Budget Item</button>
 
         <TransactionDetails 
             v-for="transaction in transactions" 
@@ -117,11 +126,28 @@ import DeleteModal from './DeleteModal.vue';
 </script>
 
 <style scoped>
-.budgetDetails {
-    border: 1px solid black;
-}
 .header {
-    margin-top: 1em;
+    margin: 0.5em 0 0 0;
+}
+.dateSubheader {
+    margin: 0.5em auto 1em;
+}
+.budgetDetails {
+    border: 1px solid green;
+    border-radius: 20px;
+    margin-bottom: 1em;
+}
+.budgetButtons {
+    text-align: right;
+    padding-top: 1em;
+    width: 90%;
+    margin: 0 auto;
+}
+.editBudgetButton {
+    margin-right: 0.5em;
+}
+.deleteBudgetButton {
+
 }
 .progressBar {
     border: 1px solid green;
@@ -142,4 +168,23 @@ import DeleteModal from './DeleteModal.vue';
     margin-bottom: 0;
     left: 50%;
 }
+.transactionsHeaderSection {
+    position: relative;
+    border-bottom: 1px solid green;
+    height: 1.5em;
+    width: 90%;
+    margin: 0.5em auto 0 auto;
+}
+.transactionHeader {
+    text-align: left;
+    margin: 0;
+}
+.addTransactionButtonDiv {
+    text-align: right;
+    position: relative;
+    height: 1em;
+    top: -130%;
+    padding-top: 0.5em;
+}
+
 </style>
