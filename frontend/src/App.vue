@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <img alt="Money logo" src="./assets/moneybag.png">
+    <img class="moneyImg" alt="Money logo" src="./assets/moneybag.png">
     <h2>Savior</h2>
     <p>Don't be (too) broke.</p>
 
     <div v-if="budgetItems">
-      {{budgetItems}}
       <BudgetDetails
         v-for="item in budgetItems"
         v-bind:key="item.id"
@@ -30,17 +29,13 @@
 <script>
 import BudgetDetails from './components/BudgetDetails.vue'
 import CreateModal from './components/CreateModal.vue';
-// import EditModal from './components/EditModal.vue';
-// import DeleteModal from './components/DeleteModal.vue';
 import axios from 'axios';
 
 export default {
   name: 'app',
   components: {
     BudgetDetails,
-    CreateModal,
-    // EditModal,
-    // DeleteModal
+    CreateModal
   },
   data () {
     return {
@@ -61,7 +56,9 @@ export default {
       axios.get(budgetItemsUrl)
         .then((response => {
           this.budgetItems = response.data;
-        }));
+        })).catch(error => {
+          console.log(error.response);
+        });
     },
     openCreateModal: function() {
       this.$refs.createModal.show();
@@ -73,10 +70,16 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 24px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.moneyImg {
+  height: 5em;
+  width: 5em;
 }
 </style>

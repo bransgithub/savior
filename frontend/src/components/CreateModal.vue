@@ -1,19 +1,9 @@
 <template>
     <div class="createModal" v-if="showModal">
-        <button class="closeButton" @click="hide()">
-            X
-        </button>
 
         <div v-if="isBudget">
-            Add new budget item
+            Add a new budget item.
 
-            <form
-                id="newBudgetForm"
-                action="https://savior-api.herokuapp.com/budget"
-                method="post"
-            >
-
-            <p v-if="errors.length">
             <p>
                 <label for="name">Name</label>
                 <input
@@ -54,23 +44,16 @@
             </p>
 
             <p>
-                <input 
-                    type="submit"
-                    value="Submit"
-                >
-            </p>
+                <button class="submitButton" @click="onSubmitBudget()">Submit</button>
 
-            </form>
+                <button class="closeButton" @click="hide()">
+                    Cancel
+                </button>
+            </p>
         </div>
 
         <div v-else>
-            Add transaction to {{name}} budget.
-
-            <form
-                id="newBudgetForm"
-                action="https://savior-api.herokuapp.com/budget/ /addtransaction"
-                method="post"
-            >
+            Add another transaction to this budget.
 
             <p>
                 <label for="name">Name</label>
@@ -94,13 +77,12 @@
             </p>
 
             <p>
-                <input 
-                    type="submit"
-                    value="Submit"
-                >
-            </p>
+                <button class="submitButton" @click="onSubmitTransaction()">Submit</button>
 
-            </form>
+                <button class="closeButton" @click="hide()">
+                    Cancel
+                </button>
+            </p>
         </div>
 
         <br/>
@@ -110,9 +92,12 @@
 </template>
 
 <script>
-  export default {
+import axios from 'axios';
+
+export default {
     name: 'CreateModal',
     props: {
+        budgetId: String,
         isBudget: Boolean
     },
     data() {
@@ -122,9 +107,16 @@
           name: null,
           amount: null,
           startDate: null,
-          endDate: null,
-          budgetId: null
+          endDate: null
       }
+    },
+    computed: {
+        addBudgetEndpoint() {
+            return `https://savior-api.herokuapp.com/budget`
+        },
+        addTransactionEndpoint() {
+            return `https://savior-api.herokuapp.com/budget/${this.budgetId}/addtransaction`;
+        }
     },
     methods: {
         show() {
@@ -132,6 +124,44 @@
         },
         hide() {
             this.showModal = false;
+        },
+        onSubmitBudget() {
+            if (this.name && this.amount && this.startDate && this.endDate) {
+                let newBudget = {
+                    "name": this.name,
+                    "amount": this.amount,
+                    "startDate": this.startDate,
+                    "endDate": this.endDate
+                };
+
+                axios.post(this.addBudgetEndpoint, newBudget)
+                    .then((response => {
+                        console.log(response);
+                        location.reload();
+                    })).catch(error => {
+                        console.log(error.response);
+                    });
+            } else {
+                console.log("Unable to make request; data missing.")
+            }
+        },
+        onSubmitTransaction() {
+            if (this.name && this.amount) {
+                let newTransaction = {
+                    "name": this.name,
+                    "amount": this.amount
+                };
+
+                axios.post(this.addTransactionEndpoint, newTransaction)
+                    .then((response => {
+                        console.log(response);
+                        location.reload();
+                    })).catch(error => {
+                        console.log(error.response);
+                    });
+            } else {
+                console.log("Unable to make request; data missing.")
+            }
         }
     }
   }

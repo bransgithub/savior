@@ -9,15 +9,26 @@
         </ul>
 
         <CreateModal 
-        ref="createModal"
-        :isBudget=false
+            ref="createModal"
+            :budgetId="id"
+            :isBudget=false
         />
 
-        <button @click="openCreateModal()">Add Transaction</button>
+        <DeleteModal 
+            ref="deleteModal"
+            :id="id"
+            :isBudget=true
+        />
+
+        <button @click="openCreateTransactionModal()">Add Transaction</button>
+        <button @click="openDeleteBudgetModal()">Delete Budget Item</button>
 
         <TransactionDetails 
             v-for="transaction in transactions" 
-            v-bind:key="transaction.id" 
+            v-bind:key="transaction._id" 
+            :id="transaction._id"
+            :name="transaction.name"
+            :amount="transaction.amount"
             :budgetId="id"
         ></TransactionDetails>
     </div>
@@ -27,7 +38,7 @@
 import TransactionDetails from './TransactionDetails.vue';
 import CreateModal from './CreateModal.vue';
 // import EditModal from './EditModal.vue';
-// import DeleteModal from './DeleteModal.vue';
+import DeleteModal from './DeleteModal.vue';
 
   export default {
     name: 'BudgetDetails',
@@ -35,7 +46,7 @@ import CreateModal from './CreateModal.vue';
         TransactionDetails,
         CreateModal,
         // EditModal,
-        // DeleteModal
+        DeleteModal
     },
     props: {
         id: String,
@@ -51,8 +62,11 @@ import CreateModal from './CreateModal.vue';
       }
     },
     methods: {
-        openCreateModal: function() {
-        this.$refs.createModal.show();
+        openCreateTransactionModal: function() {
+            this.$refs.createModal.show();
+        },
+        openDeleteBudgetModal: function() {
+            this.$refs.deleteModal.show();
         }
     }
   }
