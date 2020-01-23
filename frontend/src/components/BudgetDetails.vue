@@ -31,6 +31,7 @@
         />
 
         <button @click="openCreateTransactionModal()">Add Transaction</button>
+        <button @click="openEditBudgetModal()">Edit Budget Item</button>
         <button @click="openDeleteBudgetModal()">Delete Budget Item</button>
 
         <TransactionDetails 
@@ -74,6 +75,9 @@ import DeleteModal from './DeleteModal.vue';
     methods: {
         openCreateTransactionModal: function() {
             this.$refs.createModal.show();
+        },
+        openEditBudgetModal: function() {
+            this.$refs.editModal.show();  
         },
         openDeleteBudgetModal: function() {
             this.$refs.deleteModal.show();
