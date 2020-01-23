@@ -26,7 +26,7 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB could not connect:'));
 
-let port = 8085;
+let port = process.env.PORT;
 app.listen(port, () => {
     console.log("Server running on port: " + port);
 })
