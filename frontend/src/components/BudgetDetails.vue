@@ -1,12 +1,11 @@
 <template>
     <div class="budgetDetails">
-        <ul>
-            <li>{{id}}</li>
-            <li>{{name}}</li>
-            <li>{{startDate}}</li>
-            <li>{{endDate}}</li>
-            <li>{{amount}}</li>
-        </ul>
+        <h2>{{name}}</h2>
+        <p>{{startDateFormatted}}-{{endDateFormatted}}</p>
+
+        <div class="progressBar">
+            <p>${{amountSpent}}/${{amount}}</p>
+        </div>
 
         <CreateModal 
             ref="createModal"
@@ -69,8 +68,22 @@ import DeleteModal from './DeleteModal.vue';
     },
     data() {
       return {
-
+          amountSpent: Number
       }
+    },
+    computed: {
+        progress() {
+            return this.amountSpent/this.amountSpent;
+        },
+        startDateFormatted() {
+            return this.startDate.toLocaleDateString("en-US");
+        },
+        endDateFormatted() {
+            return this.endDate.toLocaleDateString("en-US");
+        }
+    },
+    mounted () {
+        this.calculateAmountSpent();
     },
     methods: {
         openCreateTransactionModal: function() {
@@ -81,13 +94,25 @@ import DeleteModal from './DeleteModal.vue';
         },
         openDeleteBudgetModal: function() {
             this.$refs.deleteModal.show();
+        },
+        calculateAmountSpent: function() {
+            var amountSpent = 0;
+
+            this.transactions.forEach(function(transaction) {
+                amountSpent += transaction.amount;
+            });
+
+            this.amountSpent = amountSpent;
         }
-    }
+    },
   }
 </script>
 
 <style scoped>
 .budgetDetails {
+    border: 1px solid black;
+}
+.progressBar {
     border: 1px solid black;
 }
 </style>
