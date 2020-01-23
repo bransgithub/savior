@@ -14,6 +14,16 @@
             :isBudget=false
         />
 
+        <EditModal
+            ref="editModal"
+            :id="id"
+            :name="name"
+            :amount="amount"
+            :startDate="startDate"
+            :endDate="endDate"
+            :isBudget=true
+        />
+
         <DeleteModal 
             ref="deleteModal"
             :id="id"
@@ -37,7 +47,7 @@
 <script>
 import TransactionDetails from './TransactionDetails.vue';
 import CreateModal from './CreateModal.vue';
-// import EditModal from './EditModal.vue';
+import EditModal from './EditModal.vue';
 import DeleteModal from './DeleteModal.vue';
 
   export default {
@@ -45,7 +55,7 @@ import DeleteModal from './DeleteModal.vue';
     components: {
         TransactionDetails,
         CreateModal,
-        // EditModal,
+        EditModal,
         DeleteModal
     },
     props: {

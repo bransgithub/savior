@@ -8,6 +8,14 @@
             <li>{{budgetId}}</li>
         </ul>
 
+        <EditModal
+            ref="editModal"
+            :id="id"
+            :name="name"
+            :amount="amount"
+            :isBudget=false
+        />
+
         <DeleteModal 
             ref="deleteModal"
             :id="id"
