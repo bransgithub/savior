@@ -2,22 +2,24 @@
   <div id="app">
     <img alt="Money logo" src="./assets/moneybag.png">
     <h2>Savior</h2>
-    <p>Save cash fast</p>
+    <p>Don't be (too) broke.</p>
 
     <div v-if="budgetItems">
+      {{budgetItems}}
       <BudgetDetails
         v-for="item in budgetItems"
         v-bind:key="item.id"
-        name: item.name
-        startDate: item.startDate
-        endDate: item.endDate
-        amount: item.amount
-        transactions: item.transactions />
+        :id="item._id"
+        :name="item.name"
+        :startDate="new Date(item.startDate)"
+        :endDate="new Date(item.endDate)"
+        :amount="item.amount"
+        :transactions="item.transactions" />
     </div>
 
     <CreateModal 
       ref="createModal"
-      isBudget="true"
+      :isBudget=true
     />
 
     <button @click="openCreateModal()">Add Another Budget!</button>
@@ -47,7 +49,7 @@ export default {
     }
   },
   mounted () {
-    this.apiAddress = 'http://localhost:8085';
+    this.apiAddress = 'https://savior-api.herokuapp.com';
     this.getBudgetItems();
   },
   methods: {
