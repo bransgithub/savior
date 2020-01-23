@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <!--
     <img class="moneyImg" alt="Money logo" src="./assets/moneybag.png">
-    <h2>Savior</h2>
-    <p>Don't be (too) broke.</p>
-    -->
+    <h2 class="header">Savior</h2>
+    <p class="subHeader">Don't be (too) broke.</p>
 
     <div v-if="budgetItems">
       <BudgetDetails
@@ -119,8 +117,20 @@ export default {
   width: 65%;
   margin: 60px auto;
 }
+.header {
+  margin-bottom: 0;
+}
+.subHeader {
+  margin-top: 0.5em;
+}
 button {
-    font-size: 1em;
+  font-size: 1em;
+}
+label {
+  margin-right: 0.5em;
+}
+input {
+  font-size: 0.8em;
 }
 .moneyImg {
   height: 5em;

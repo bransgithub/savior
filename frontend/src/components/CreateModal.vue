@@ -1,6 +1,12 @@
 <template>
     <div class="createModal" v-if="showModal">
 
+        <div class="closeDiv">
+            <button class="closeButton" @click="hide()">
+                X
+            </button>
+        </div>
+
         <div v-if="isBudget">
             Add a new budget item.
 
@@ -33,7 +39,9 @@
                     type="date"
                     name="startDate"
                 >
+            </p>
 
+            <p>
                 <label for="endDate">End Date</label>
                 <input
                     id="endDate"
@@ -45,10 +53,6 @@
 
             <p>
                 <button class="submitButton" @click="onSubmitBudget()">Submit</button>
-
-                <button class="closeButton" @click="hide()">
-                    Cancel
-                </button>
             </p>
         </div>
 
@@ -78,10 +82,6 @@
 
             <p>
                 <button class="submitButton" @click="onSubmitTransaction()">Submit</button>
-
-                <button class="closeButton" @click="hide()">
-                    Cancel
-                </button>
             </p>
         </div>
 
@@ -183,5 +183,7 @@ export default {
     margin-left: -30vw;
     text-align: left;
 }
-
+.closeDiv {
+    text-align: right;
+}
 </style>

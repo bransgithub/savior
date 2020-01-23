@@ -1,8 +1,10 @@
 <template>
     <div class="deleteModal" v-if="showModal">
-        <button class="closeButton" @click="hide()">
-            X
-        </button>
+        <div class="closeDiv">
+            <button class="closeButton" @click="hide()">
+                X
+            </button>
+        </div>
 
         <h2>Are you sure?</h2>
 
@@ -77,4 +79,7 @@ import axios from 'axios';
     text-align: left;
 }
 
+.closeDiv {
+    text-align: right;
+}
 </style>
