@@ -21,7 +21,7 @@ app.use('/transaction', TransactionRoutes);
 
 //MongoDB Setup
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB could not connect:'));
