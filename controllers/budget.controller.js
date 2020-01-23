@@ -38,7 +38,7 @@ exports.budgetUpdate = function (req, res, next) {
     });
 };
 
-exports.budgetAddTransaction = function (req, res) {
+exports.budgetAddTransaction = function (req, res, next) {
     Budget.findById(req.params.id, function (err, budget) {
         if (err) return next(err); 
         
