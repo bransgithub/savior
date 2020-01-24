@@ -64,6 +64,7 @@ import axios from 'axios';
 
 <style scoped>
 .deleteModal {
+    text-align: center;
     z-index: 1;
     position: fixed;
     background-color: rgb(178, 232, 184);

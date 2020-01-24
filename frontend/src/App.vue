@@ -29,7 +29,7 @@
 <script>
 import BudgetDetails from './components/BudgetDetails.vue'
 import CreateModal from './components/CreateModal.vue';
-//import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: 'app',
@@ -51,53 +51,14 @@ export default {
     getBudgetItems: function() {
       this.budgetItems = new Array();
 
-      //var budgetItemsUrl = `${this.apiAddress}/budget`;
+      var budgetItemsUrl = `${this.apiAddress}/budget`;
 
-      this.budgetItems = [
-        {
-          "name": "1",
-          "startDate": new Date(),
-          "endDate": new Date(),
-          "amount": 1000,
-          "transactions": [
-            {
-              "name": "T22",
-              "amount": 200.68
-            },
-            {
-              "name": "T23",
-              "amount": 312.12
-            }
-          ]
-        },
-        {
-          "name": "2",
-          "startDate": new Date(),
-          "endDate": new Date(),
-          "amount": 500,
-          "transactions": [
-            {
-              "name": "T22",
-              "amount": 40.19
-            }
-          ]
-        },
-        {
-          "name": "3",
-          "startDate": new Date(),
-          "endDate": new Date(),
-          "amount": 500,
-          "transactions": []
-        }
-      ]
-/*
       axios.get(budgetItemsUrl)
         .then((response => {
           this.budgetItems = response.data;
         })).catch(error => {
           console.log(error.response);
         });
-        */
     },
     openCreateModal: function() {
       this.$refs.createModal.show();

@@ -169,6 +169,7 @@ export default {
 
 <style scoped>
 .createModal {
+    text-align: center;
     z-index: 1;
     position: fixed;
     background-color: rgb(178, 232, 184);
