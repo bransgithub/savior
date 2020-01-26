@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img class="moneyImg" alt="Money logo" src="./assets/moneybag.png">
-    <h2 class="header">Savior</h2>
+    <h2 class="header"><a href="https://github.com/bransgithub/savior">Savior</a></h2>
     <p class="subHeader">Don't be (too) broke.</p>
 
     <div v-if="budgetItems">
