@@ -87,7 +87,7 @@ import DeleteModal from './DeleteModal.vue';
 .transactionButtonsDiv {
     text-align: right;
     position: relative;
-    top: -190%;
+    top: -210%;
 }
 .editButton {
     margin-left: 5em;

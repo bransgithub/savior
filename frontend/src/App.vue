@@ -86,6 +86,10 @@ export default {
 }
 button {
   font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(121, 203, 121, 0.2);
+  padding: 0.2em 0.5em;
 }
 label {
   margin-right: 0.5em;
@@ -101,6 +105,9 @@ input {
   #app {
     font-size: 24px;
     width: 90%;
+  }
+  button {
+    font-size: 0.8em;
   }
 }
 
