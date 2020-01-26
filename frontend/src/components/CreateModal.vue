@@ -1,5 +1,5 @@
 <template>
-    <div class="createModal" v-if="showModal">
+    <div class="createModal saviorModal" v-if="showModal">
 
         <div class="closeDiv">
             <button class="closeButton" @click="hide()">

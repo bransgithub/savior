@@ -84,12 +84,19 @@ export default {
 .subHeader {
   margin-top: 0.5em;
 }
+a {
+  color: rgb(121, 203, 121);
+}
 button {
   font-size: 1em;
   border: none;
   border-radius: 5px;
   background-color: rgb(121, 203, 121, 0.2);
   padding: 0.2em 0.5em;
+}
+.saviorModal button {
+  padding: 0.5em 1em;
+  background-color: rgb(121, 203, 121, 0.5);
 }
 label {
   margin-right: 0.5em;

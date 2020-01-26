@@ -146,9 +146,6 @@ import DeleteModal from './DeleteModal.vue';
 .editBudgetButton {
     margin-right: 0.5em;
 }
-.deleteBudgetButton {
-
-}
 .progressBar {
     border: 1px solid green;
     position: relative;
