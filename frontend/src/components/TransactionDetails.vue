@@ -2,8 +2,12 @@
     <div class="transactionDetails">
 
         <div class="contentDiv">
-            <div class="content">
-                {{name}} <span class="amount">{{amount}}</span>
+            <div class="name">
+                {{name}} 
+            </div>
+
+            <div class="amount">
+                {{amount}}
             </div>
 
             <div class="transactionButtonsDiv">
@@ -70,17 +74,20 @@ import DeleteModal from './DeleteModal.vue';
     padding-top: 0;
     padding-bottom: 0.1em;
 }
-.content {
+.name {
     text-align: left;
     margin: 0;
+}
+.amount {
+    text-align: center;
+    position: relative;
+    margin: 0;
+    top: -100%;
 }
 .transactionButtonsDiv {
     text-align: right;
     position: relative;
-    top: -100%;
-}
-.amount {
-    margin-left: 3em;
+    top: -190%;
 }
 .editButton {
     margin-left: 5em;

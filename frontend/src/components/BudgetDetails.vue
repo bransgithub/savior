@@ -18,7 +18,7 @@
 
         <div class="transactionsHeaderSection">
             <div class="transactionHeader">
-                Transactions 
+                <strong>Transactions</strong>
             </div>
             <div class="addTransactionButtonDiv">
                 <button class="addTransactionButton" @click="openCreateTransactionModal()">+</button>
@@ -170,7 +170,7 @@ import DeleteModal from './DeleteModal.vue';
 }
 .transactionsHeaderSection {
     position: relative;
-    border-bottom: 1px solid green;
+    border-bottom: 2px solid green;
     height: 1.5em;
     width: 90%;
     margin: 0.5em auto 0 auto;

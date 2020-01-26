@@ -178,10 +178,10 @@ export default {
     border-radius: 1em;
     width: 60vw;
     height: 60vh;
-    top: 50%;
+    position: fixed;
     left: 50%;
-    margin-top: -30vh;
-    margin-left: -30vw;
+    top: 50%;
+    transform: translate(-50%, -50%);
     text-align: left;
 }
 

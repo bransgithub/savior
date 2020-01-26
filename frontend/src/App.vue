@@ -97,4 +97,17 @@ input {
   height: 5em;
   width: 5em;
 }
+@media(max-width:768px) {
+  #app {
+    font-size: 24px;
+    width: 90%;
+  }
+}
+
+@media(max-width:600px) {
+  #app {
+    font-size: 20px;
+    width: 90%;
+  }
+}
 </style>
