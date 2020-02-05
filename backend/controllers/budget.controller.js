@@ -45,7 +45,8 @@ exports.budgetAddTransaction = function (req, res, next) {
         let newTransaction = new Transaction(
             {
                 name: req.body.name,
-                amount: req.body.amount
+                amount: req.body.amount,
+                date: req.body.date
             }
         );
 

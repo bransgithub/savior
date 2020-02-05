@@ -18,7 +18,8 @@ exports.transactionCreate = function (req, res, next) {
     let transaction = new Transaction(
         {
             name: req.body.name,
-            amount: req.body.amount
+            amount: req.body.amount,
+            date: req.body.date
         }
     );
 
