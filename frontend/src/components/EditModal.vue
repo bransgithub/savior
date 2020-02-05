@@ -69,6 +69,16 @@
             </p>
 
             <p>
+                <label for="transactionDate">Date</label>
+                <input
+                    id="transactionDate"
+                    v-model="transactionDate"
+                    type="date"
+                    name="transactionDate"
+                >
+            </p>
+
+            <p>
                 <label for="amount">Amount</label>
                 <input
                     id="amount"
@@ -101,7 +111,8 @@ export default {
         name: String,
         amount: Number,
         startDate: Date,
-        endDate: Date
+        endDate: Date,
+        transactionDate: Date
     },
     data() {
       return {
@@ -149,6 +160,7 @@ export default {
                 let newTransaction = {
                     "id": this.id,
                     "name": this.name,
+                    "date": this.transactionDate,
                     "amount": this.amount
                 };
 

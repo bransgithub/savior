@@ -70,6 +70,16 @@
             </p>
 
             <p>
+                <label for="transactionDate">Date</label>
+                <input
+                    id="transactionDate"
+                    v-model="transactionDate"
+                    type="date"
+                    name="transactionDate"
+                >
+            </p>
+
+            <p>
                 <label for="amount">Amount</label>
                 <input
                     id="amount"
@@ -107,7 +117,8 @@ export default {
           name: null,
           amount: null,
           startDate: null,
-          endDate: null
+          endDate: null,
+          transactionDate: null
       }
     },
     computed: {
@@ -146,9 +157,10 @@ export default {
             }
         },
         onSubmitTransaction() {
-            if (this.name && this.amount) {
+            if (this.name && this.amount && this.transactionDate) {
                 let newTransaction = {
                     "name": this.name,
+                    "date": this.transactionDate,
                     "amount": this.amount
                 };
 

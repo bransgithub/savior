@@ -3,11 +3,11 @@
 
         <div class="contentDiv">
             <div class="name">
-                {{name}} 
+                [{{dateFormatted}}] {{name}} 
             </div>
 
             <div class="amount">
-                {{amount}}
+                ${{amount.toFixed(2)}}
             </div>
 
             <div class="transactionButtonsDiv">
@@ -45,6 +45,7 @@ import DeleteModal from './DeleteModal.vue';
     props: {
         id: String,
         name: String,
+        date: Date,
         amount: Number,
         budgetId: String
     },
@@ -52,6 +53,12 @@ import DeleteModal from './DeleteModal.vue';
       return {
 
       }
+    },
+    computed: {
+        dateFormatted() {
+            //Regex to replace the "/YYYY" in the date
+            return this.date.toLocaleDateString("en-US").replace(/\/\d{4}/g, "");
+        }
     },
     methods: {
         openDeleteTransactionModal: function() {

@@ -8,8 +8,8 @@
         <p class="dateSubheader">{{startDateFormatted}}-{{endDateFormatted}}</p>
                 
         <div class="progressBar">
-            <div class="amountFraction">
-                ${{amountSpent}}/${{amount}}
+            <div class="amountFraction" v-if="amountSpent && amount">
+                ${{amountSpent.toFixed(2)}}/${{amount.toFixed(2)}}
             </div>
             <div class="progressBarInside" :style="{ width: amountSpentPercentage }">
 
@@ -52,6 +52,7 @@
             v-bind:key="transaction._id" 
             :id="transaction._id"
             :name="transaction.name"
+            :date="new Date(transaction.date)"
             :amount="transaction.amount"
             :budgetId="id"
         ></TransactionDetails>
@@ -86,9 +87,6 @@ import DeleteModal from './DeleteModal.vue';
       }
     },
     computed: {
-        progress() {
-            return this.amountSpent/this.amountSpent;
-        },
         startDateFormatted() {
             return this.startDate.toLocaleDateString("en-US");
         },
@@ -101,6 +99,7 @@ import DeleteModal from './DeleteModal.vue';
     },
     mounted () {
         this.calculateAmountSpent();
+        this.orderTransactionsByDate();
     },
     methods: {
         openCreateTransactionModal: function() {
@@ -120,6 +119,18 @@ import DeleteModal from './DeleteModal.vue';
             });
 
             this.amountSpent = amountSpent;
+        },
+        orderTransactionsByDate: function() {
+            this.transactions.sort((t1, t2) => {
+                //Order dates by DESC
+                if (t1.date < t2.date) {
+                    return 1; 
+                }
+                if (t1.date > t2.date) {
+                    return -1;
+                }
+                return 0;
+            });
         }
     },
   }
